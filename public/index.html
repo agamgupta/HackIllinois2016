@@ -3,19 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Speech to Text</title>
-  </head>
-  <body>
-    <button onClick="onButtonPress()">Record Audio!</button>
-    <script type='javascript'>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
+    <script>
       var recognition = new webkitSpeechRecognition();
-      console.log(recognition);
       recognition.onresult = function(event) {
         console.log(event);
       }
-      var onButtonPress = function() {
-        recognition.start();
+
+      var faceDetectFlag = false;
+      while (!faceDetectFlag){
+        faceDetectFlag = $.get('localhost:8000/facedetect',function(res){
+          console.log(res);
+        });
       }
-      console.log(onButtonPress);
+      recognition.start();
     </script>
+  </head>
+
+  <body>
   </body>
 </html>
