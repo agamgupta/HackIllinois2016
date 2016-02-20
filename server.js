@@ -3,10 +3,7 @@ var express = require('express'),
     faceDetectFlag = false,
     text = '';
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-
-app.set('port', (process.env.PORT || 5000));
+var port = process.env.PORT || 8000;
 
 app.get('/facedetect',function(req,res){
   res.json({
@@ -36,6 +33,6 @@ app.post('/text',function(req,res){
   }
 });
 
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + port );
+app.listen(port, function () {
+  console.log( "Listening on port " + port );
 });
