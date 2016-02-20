@@ -1,8 +1,9 @@
-var port = 8000,
-    express = require('express'),
+var express = require('express'),
     app = express(),
     faceDetectFlag = false,
     text = '';
+
+app.set('port', (process.env.PORT || 5000));
 
 app.get('/facedetect',function(req,res){
   res.json({
@@ -32,5 +33,6 @@ app.post('/text',function(req,res){
   }
 });
 
-app.listen(port);
-console.log('Running on port: ' + port);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
