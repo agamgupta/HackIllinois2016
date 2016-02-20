@@ -5,8 +5,10 @@ var express = require('express'),
 
 var port = process.env.PORT || 8000;
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/',function(req,res){
-  res.send('Server is working!');
+  res.sendFile('index.html');
 });
 
 app.get('/facedetect',function(req,res){
