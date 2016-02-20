@@ -12,28 +12,32 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
+      var waitingForText = false;
+
       var recognition = new webkitSpeechRecognition();
       recognition.onresult = function(event) {
-        //log text result
-        console.log(event);
+        // console.log(event);
         //set flag back to false
         $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
           console.log(res);
         });
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',{
-          text: event.results[0][0].transcript,
+          'data':{
+            'text': event.results[0][0].transcript
+          },
           success: function(){
             console.log(event.results[0][0].transcript);
-            console.log('text sent');
+            waitingForText = false;
           }
         });
       }
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          if (res.faceDetectFlag){
+          if (res.faceDetectFlag && !waitingForText){
             recognition.start();
+            waitingForText = true;
           } else {
             console.log(res.faceDetectFlag);
           }
