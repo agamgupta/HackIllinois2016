@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Speech to Text</title>
+  </head>
+  <body>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
@@ -13,6 +15,7 @@
 
       var faceDetectFlag = false;
       while (!faceDetectFlag){
+        console.log(faceDetectFlag);
         setInterval(
           $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
             faceDetectFlag = res.faceDetectFlag;
@@ -22,8 +25,9 @@
       }
       recognition.start();
     </script>
-  </head>
 
-  <body>
+  <p>
+    Loaded!
+  </p>
   </body>
 </html>
