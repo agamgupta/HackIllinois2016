@@ -5,6 +5,10 @@ var express = require('express'),
 
 var port = process.env.PORT || 8000;
 
+app.get('/',function(req,res){
+  res.send('Server is working!');
+});
+
 app.get('/facedetect',function(req,res){
   res.json({
     "faceDetectFlag": faceDetectFlag
