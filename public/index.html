@@ -14,18 +14,29 @@
     <script>
       var recognition = new webkitSpeechRecognition();
       recognition.onresult = function(event) {
+        //log text result
         console.log(event);
+        //set flag back to false
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
+          console.log(res);
+        });
+        //send text to server
+        $.post('https://heroku-node-waji.herokuapp.com/text',{
+          text: event,
+          success: function(){
+            console.log('text sent');
+          }
+        });
       }
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          console.log(res);
           if (res.faceDetectFlag){
             recognition.start();
           } else {
-            console.log('not yet');
+            console.log(res.faceDetectFlag);
           }
-        })
+        });
       }, 2000);
 
     </script>
