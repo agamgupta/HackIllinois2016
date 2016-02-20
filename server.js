@@ -1,11 +1,15 @@
 var express = require('express'),
     app = express(),
+    bodyParser = require('body-parser'),
     faceDetectFlag = false,
     text = '';
 
 var port = process.env.PORT || 8000;
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/',function(req,res){
   res.sendFile('index.html');
