@@ -5,15 +5,17 @@
     <title>Speech to Text</title>
   </head>
   <body>
-    <button onClick='onButtonPress()'>Record Audio!</button>
+    <button onClick="onButtonPress()">Record Audio!</button>
     <script type='javascript'>
       var recognition = new webkitSpeechRecognition();
+      console.log(recognition);
       recognition.onresult = function(event) {
         console.log(event);
       }
       var onButtonPress = function() {
         recognition.start();
       }
+      console.log(onButtonPress);
     </script>
   </body>
 </html>
