@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Speech to Text</title>
-
+  </head>
+  <body>
+    <button onClick='onButtonPress()'>Record Audio!</button>
     <script type='javascript'>
       var recognition = new webkitSpeechRecognition();
       recognition.onresult = function(event) {
@@ -13,8 +15,5 @@
         recognition.start();
       }
     </script>
-  </head>
-  <body>
-    <button onClick='onButtonPress()'>Record Audio!</button>
   </body>
 </html>
