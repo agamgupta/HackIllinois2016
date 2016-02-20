@@ -17,17 +17,16 @@
         console.log(event);
       }
 
-      window.setInterval(
-        function(){
-          console.log('going...');
-        // $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          // console.log(res);
-          // if (res.faceDetectFlag){
-            // recognition.start();
-          // } else {
-            // console.log('not yet');
-          // }
-        }, 5000);
+      window.setInterval(function(){
+        $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
+          console.log(res);
+          if (res.faceDetectFlag){
+            recognition.start();
+          } else {
+            console.log('not yet');
+          }
+        })
+      }, 2000);
 
     </script>
 
