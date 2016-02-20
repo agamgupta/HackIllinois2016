@@ -17,7 +17,7 @@
         console.log(event);
       }
 
-      setInterval(
+      window.setInterval(
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           console.log(res);
           // if (res.faceDetectFlag){
