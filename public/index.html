@@ -16,12 +16,12 @@
       var faceDetectFlag = false;
       while (!faceDetectFlag){
         console.log(faceDetectFlag);
-        // setInterval(
+        setTimeout(
           $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
             faceDetectFlag = res.faceDetectFlag;
             console.log(res);
           })
-        // , 2000);
+        , 5000);
       }
       recognition.start();
     </script>
