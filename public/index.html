@@ -6,6 +6,10 @@
   </head>
   <body>
 
+    <p>
+      Loaded!
+    </p>
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
       var recognition = new webkitSpeechRecognition();
@@ -14,20 +18,17 @@
       }
 
       var faceDetectFlag = false;
-      while (!faceDetectFlag){
-        console.log(faceDetectFlag);
-        setTimeout(
-          $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-            faceDetectFlag = res.faceDetectFlag;
-            console.log(res);
-          })
-        , 5000);
-      }
-      recognition.start();
-    </script>
+      console.log(faceDetectFlag);
+      setTimeout(
+        $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
+          faceDetectFlag = res.faceDetectFlag;
+          console.log(res);
+          if (faceDetectFlag){
+            recognition.start();
+          }
+        }), 5000);
 
-  <p>
-    Loaded!
-  </p>
+    </script>
+    `
   </body>
 </html>
