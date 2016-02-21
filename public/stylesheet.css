@@ -1,8 +1,3 @@
-@font-face {
-  font-family: lobster;
-  src: url('http://fonts.googleapis.com/css?family=Lobster&subset=all');
-}
-
 #container {
   margin: auto;
   width: 600px;
@@ -29,8 +24,12 @@
 }
 
 #logo {
-  font-family: lobster;
-  font-size: 150px;
+	font-family: Lobster;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
 }
 
 #logo, #inner {
