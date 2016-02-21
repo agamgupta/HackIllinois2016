@@ -41,7 +41,8 @@
         var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
         var translatedText = '';
-        $.post(translateUrl,function(res){
+        $.get(translateUrl,function(res){
+          console.log(res);
           translatedText = res.translations.translatedText;
         });
         //send text to server
