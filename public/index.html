@@ -63,7 +63,7 @@
           {
             text: translatedText,
             success: function(res){
-              if (translatedText.split(" ").length > 7){
+              if (translatedText.split(" ").length > 1000){
                 recognition.stop();
                 console.log(recognition.results);
               }
