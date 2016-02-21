@@ -1,3 +1,8 @@
+@font-face {
+  font-family: lobster;
+  src: url('http://fonts.googleapis.com/css?family=Lobster&subset=all');
+}
+
 #container {
   margin: auto;
   width: 600px;
@@ -23,9 +28,18 @@
   color: white !important;
 }
 
+#logo {
+  font-family: lobster;
+  font-size: 150px;
+}
+
+#logo, #inner {
+  display: inline-block;
+}
+
 @media (max-width: 800px) {
   #native-words {
-    padding-right: 45%;
+    padding-right: 40%;
   }
 }
 
