@@ -30,8 +30,7 @@
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
-  margin-top: 200px;
-  margin-left: 800px;
+  margin-left: 650px;
   position: static;
 }
 
@@ -39,10 +38,6 @@
   #native-words {
     padding-right: 40%;
   }
-}
-
-#logo, .test {
-  display: inline-block;
 }
 
 body {
