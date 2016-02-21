@@ -16,6 +16,13 @@
   height: 200px;
 }
 
+#native-words {
+  padding-left: 40%;
+  padding-top: 5%;
+  font-size: 20px;
+  color: white !important;
+}
+
 body {
   background-color: #3490C4 !important;
 }

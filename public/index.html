@@ -31,7 +31,9 @@
         <button class='btn btn-success' onClick="begin()">Start Conversing!</button>
       </div>
       <div id='bottom'>
+        <p id='native-words'>
 
+        </p>
       </div>
     </div>
 
@@ -67,7 +69,7 @@
 
           var untranslatedText = event.results[0][0].transcript;
           // console.log(untranslatedText);
-          $('#text').html(untranslatedText);
+          $('#native-words').html(untranslatedText);
 
           if ($('select').val() == 'yes' && $('input').val() != 'en' && $('input').val() != ''){
             var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
