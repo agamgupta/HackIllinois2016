@@ -60,7 +60,15 @@
           {
             text: translatedText,
             success: function(res){
-              console.log(res);
+              if (translatedText.split(" ").length > 7){
+                recognition.stop();
+                translatedText = "";
+                var recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = $('input').val();
+                recognition.start();        
+              }
             }
           }
         );
