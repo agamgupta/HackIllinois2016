@@ -39,6 +39,8 @@
       recognition.lang = $('input').val();
       recognition.start();
       recognition.onresult = function(event) {
+        recogntion.stop();
+
         // console.log(event);
         //set flag back to false
         $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
