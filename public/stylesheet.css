@@ -8,7 +8,7 @@
   margin: auto;
   height: 450px;
   padding-top: 5%;
-  padding-left: 30%;
+  padding-left: 22%;
   background-color: white !important;
 }
 
@@ -30,26 +30,14 @@
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
-  margin-top: 200px;
-  padding-left: 30%;
+  padding-left: 50%;
+  position: static;
 }
 
 @media (max-width: 800px) {
   #native-words {
     padding-right: 40%;
   }
-}
-
-#lang, #trans {
-  display: inline-block;
-}
-
-button {
-  padding-left: 40%;
-}
-
-#trans {
-  padding-left: 100px;
 }
 
 body {
