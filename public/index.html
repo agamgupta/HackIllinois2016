@@ -75,7 +75,7 @@
       }, 2000, function(){
         recognition.onresult = function(){
           recognition = new webkitSpeechRecognition();
-          recognition.continuous = true;
+          // recognition.continuous = true;
           recognition.interimResults = true;
         };
       });
