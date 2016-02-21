@@ -7,13 +7,20 @@
 #inner {
   margin: auto;
   height: 450px;
-  padding-top: 10%;
-  padding-left: 36%;
+  padding-top: 5%;
+  padding-left: 30%;
   background-color: white !important;
 }
 
 #bottom {
   height: 200px;
+}
+
+#native-words {
+  padding-left: 45%;
+  padding-top: 5%;
+  font-size: 50px;
+  color: white !important;
 }
 
 #logo {
@@ -24,13 +31,7 @@
 	font-weight: 500;
 	line-height: 26.4px;
   margin-top: 200px;
-  padding-left: 27%;
-}
-
-#native-words {
-  position: static;
-  font-size: 50px;
-  color: white !important;
+  padding-left: 30%;
 }
 
 @media (max-width: 800px) {
@@ -44,9 +45,7 @@
 }
 
 button {
-  position: fixed;
-  margin-top: 350px;
-  margin-left: 170px;
+  padding-left: 40%;
 }
 
 #trans {
