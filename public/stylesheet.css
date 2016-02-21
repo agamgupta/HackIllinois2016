@@ -41,6 +41,10 @@
   }
 }
 
+#logo, .test {
+  display: inline-block;
+}
+
 body {
   background-color: #3490C4 !important;
 }
