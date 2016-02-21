@@ -36,6 +36,8 @@
       var recognition = new webkitSpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
+      recognition.lang = $('input').val();
+      recognition.start();
       recognition.onresult = function(event) {
         // console.log(event);
         //set flag back to false
@@ -69,9 +71,8 @@
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
           if (res.faceDetectFlag == 'true'){ //&& waitingForText == false){
-            recognition.lang = $('input').val();
+
             console.log(res.faceDetectFlag+', language is '+recognition.lang);
-            recognition.start();
             // waitingForText = true;
           }
         });
