@@ -69,7 +69,7 @@
 
           var untranslatedText = event.results[0][0].transcript;
           // console.log(untranslatedText);
-          $('#native-words').html(untranslatedText);
+          $('#native-words').html(untranslatedText.split(" ")[untranslatedText.split(" ").length-1]);
 
           if ($('select').val() == 'yes' && $('input').val() != 'en' && $('input').val() != ''){
             var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
