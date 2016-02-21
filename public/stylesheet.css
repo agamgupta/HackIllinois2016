@@ -45,7 +45,9 @@
 }
 
 button {
-  margin-left: 250px;
+  position: static;
+  margin-top: 400px;
+  margin-left: 200px;
 }
 
 #trans {
