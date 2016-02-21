@@ -30,8 +30,8 @@
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
-  padding-left: 40%;
-  position: static;
+  margin-top: 200px;
+  padding-left: 30%;
 }
 
 @media (max-width: 800px) {
@@ -42,6 +42,10 @@
 
 #lang, #trans {
   display: inline-block;
+}
+
+#trans {
+  padding-left: 100px;
 }
 
 body {
