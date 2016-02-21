@@ -73,8 +73,11 @@
         });
 
       }, 2000, function(){
-        recognition.end();
-        recognition.stop();
+        var old_onresult = recognition.onresult;
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.onresult = old_onresult;
       });
 
     </script>
