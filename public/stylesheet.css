@@ -8,7 +8,7 @@
   margin: auto;
   height: 450px;
   padding-top: 10%;
-  padding-left: 38%;
+  padding-left: 36%;
   background-color: white !important;
 }
 
@@ -45,7 +45,7 @@
 }
 
 button {
-  padding-left: 50px;
+  margin-left: 50px;
 }
 
 #trans {
