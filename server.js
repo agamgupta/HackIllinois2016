@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     faceDetectFlag = false,
     text = '',
+    text2 = '',
     textomar = 'you did it';
 
 var port = process.env.PORT || 8000;
@@ -33,11 +34,11 @@ app.post('/facedetect',function(req,res){
 
 app.get('/text',function(req,res){
   res.json({
-    "text":text
+    "text":text2
   });
   if (text.split(" ").length > 6){
     //take off first word
-    text.split(" ").slice(1,text.split(" ").length).join(" ");
+    text2 = text.split(" ").slice(text.split(" ").length-6,text.split(" ").length).join(" ");
   }
 });
 
