@@ -2,7 +2,8 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     faceDetectFlag = false,
-    text = 'you did it';
+    text = '',
+    textomar = 'you did it';
 
 var port = process.env.PORT || 8000;
 
@@ -40,6 +41,21 @@ app.post('/text',function(req,res){
   if (req.body.text){
     text = req.body.text;
     res.json({"text":text});
+  } else {
+    res.json({"err":"did not get any text"});
+  }
+});
+
+app.get('/textomar',function(req,res){
+  res.json({
+    "textomar":textomar
+  });
+});
+
+app.post('/textomar',function(req,res){
+  if (req.body.text){
+    text = req.body.text;
+    res.json({"textomar":textomar});
   } else {
     res.json({"err":"did not get any text"});
   }
