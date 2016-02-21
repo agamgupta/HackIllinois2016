@@ -66,24 +66,24 @@
         );
 
       }
+      console.log(res.faceDetectFlag+', language is '+recognition.lang);
 
-      window.setInterval(function(){
-        $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
-          if (res.faceDetectFlag == 'true'){ //&& waitingForText == false){
-
-            console.log(res.faceDetectFlag+', language is '+recognition.lang);
-            // waitingForText = true;
-          }
-        });
-
-      }, 2000, function(){
-        recognition.onresult = function(){
-          recognition = new webkitSpeechRecognition();
-          recognition.continuous = true;
-          recognition.interimResults = true;
-        };
-      });
+      // window.setInterval(function(){
+      //   $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
+      //     // console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
+      //     if (res.faceDetectFlag == 'true'){ //&& waitingForText == false){
+      //
+      //       // waitingForText = true;
+      //     }
+      //   });
+      //
+      // }, 2000, function(){
+      //   recognition.onresult = function(){
+      //     recognition = new webkitSpeechRecognition();
+      //     recognition.continuous = true;
+      //     recognition.interimResults = true;
+      //   };
+      // });
 
     </script>
 
