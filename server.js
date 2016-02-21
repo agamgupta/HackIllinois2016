@@ -6,6 +6,8 @@ var express = require('express'),
     text2 = '',
     $ = require('jquery');
 
+var del = 0;
+
 var port = process.env.PORT || 8000;
 
 app.use(express.static(__dirname + '/public'));
@@ -39,9 +41,12 @@ app.get('/wholetext',function(req,res){
 });
 
 app.get('/text',function(req,res){
-  res.json({
-    "text":text2
-  });
+  del += 1;
+  if (del % 100 === 0){
+    res.json({
+      "text":text2
+    });
+  }
   var length = text.split(" ").length;
   if (length > 8){
     //take off first word
