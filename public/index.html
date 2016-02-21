@@ -20,8 +20,9 @@
       recognition.onresult = function(event) {
         // console.log(event);
         //set flag back to false
-        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res,err){
           console.log(res);
+          console.log(err);
         });
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
@@ -44,7 +45,7 @@
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           if (res.faceDetectFlag && !waitingForText){
             recognition.start();
-            recognitionHindi.start();
+            //recognitionHindi.start();
             waitingForText = true;
           } else {
             console.log(res.faceDetectFlag);
