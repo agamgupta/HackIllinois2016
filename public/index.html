@@ -33,7 +33,9 @@
         return url;
       }
 
-      window.setInterval(function(){
+      // window.setInterval(function(){
+      while (true){
+
 
       var recognition = new webkitSpeechRecognition();
       // recognition.continuous = true;
@@ -63,10 +65,10 @@
           {
             text: translatedText,
             success: function(res){
-              if (translatedText.split(" ").length > 1000){
-                recognition.stop();
-                console.log(recognition.results);
-              }
+              // if (translatedText.split(" ").length > 1000){
+              //   recognition.stop();
+              //   console.log(recognition.results);
+              // }
             }
           }
         );
@@ -75,9 +77,9 @@
         // recognition.interimResults = true;
         // recognition.lang = $('input').val();
         // recognition.start();
-
       }
-    }, 7500);
+    }
+    // }, 7500);
       // console.log(res.faceDetectFlag+', language is '+recognition.lang);
 
       // window.setInterval(function(){
