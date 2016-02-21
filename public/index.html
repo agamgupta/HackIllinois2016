@@ -39,7 +39,7 @@
       recognition.lang = $('input').val();
       recognition.start();
       recognition.onresult = function(event) {
-        recogntion.stop();
+        recognition.stop();
 
         // console.log(event);
         //set flag back to false
@@ -63,7 +63,7 @@
             text: translatedText,
             success: function(res){
               if (translatedText.split(" ").length > 7){
-                recognition.stop();
+                // recognition.stop();
                 translatedText = "";
                 recognition.results = [];
                 var recognition = new webkitSpeechRecognition();
