@@ -83,14 +83,17 @@
             console.log(res.faceDetectFlag+', language is '+recognition.lang);
             recognition.start();
             waitingForText = true;
-
-            window.setTimeout(function(){
-              if (faceDetectFlag == 'true'){
-                recognition.start();
-              }
-            }, 2000);
           }
         });
+
+        window.setTimeout(function(){
+          $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
+            if (res.faceDetectFlag == 'true'){
+              recognition.start();
+            }
+          });
+        }, 5000);
+
       }, 2000);
 
     </script>
