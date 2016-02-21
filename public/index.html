@@ -49,12 +49,12 @@
         // });
 
         if ($('input').val() != 'en' && $('input').val() != ''){
-          var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
-
-          $.get(translateUrl,function(res){
-            translatedText = res.data.translations[0].translatedText;
-            // console.log('translated to: '+translatedText);
-          });
+          // var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
+          //
+          // $.get(translateUrl,function(res){
+          //   translatedText = res.data.translations[0].translatedText;
+          //   // console.log('translated to: '+translatedText);
+          // });
         } else {
           translatedText = event.results[0][0].transcript;
         }
