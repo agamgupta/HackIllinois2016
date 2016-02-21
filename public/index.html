@@ -17,7 +17,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
-      var waitingForText = false;
+      // var waitingForText = false;
 
       var concatUrl = function(base, q, source, target){
         console.log(q);
@@ -48,27 +48,27 @@
         var translatedText = '';
         $.get(translateUrl,function(res){
           translatedText = res.data.translations[0].translatedText;
-          console.log(translatedText);
-        });
-        //send text to server
-        $.post('https://heroku-node-waji.herokuapp.com/text',
-          {
-            'text': translatedText,
-            'success': function(){
-              waitingForText = false;
+          console.log('translated to: '+translatedText);
+          //send text to server
+          $.post('https://heroku-node-waji.herokuapp.com/text',
+            {
+              'text': translatedText,
+              'success': function(){
+                // waitingForText = false;
+              }
             }
-          }
-        );
+          );
+        });
       }
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
-          if (res.faceDetectFlag == 'true' && waitingForText == false){
+          if (res.faceDetectFlag == 'true'){ //&& waitingForText == false){
             recognition.lang = $('input').val();
             console.log(res.faceDetectFlag+', language is '+recognition.lang);
             recognition.start();
-            waitingForText = true;
+            // waitingForText = true;
           }
         });
 
