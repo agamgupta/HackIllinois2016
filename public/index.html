@@ -84,9 +84,11 @@
             recognition.start();
             waitingForText = true;
 
-            // window.setTimeout(function(){
-            //   listenFailureHandler();
-            // }, 2000);
+            window.setTimeout(function(){
+              if (faceDetectFlag == 'true'){
+                recognition.start();
+              }
+            }, 2000);
           }
         });
       }, 2000);
