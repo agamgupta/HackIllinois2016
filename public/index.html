@@ -73,11 +73,11 @@
         });
 
       }, 2000, function(){
-        var old_onresult = recognition.onresult;
-        var recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.onresult = old_onresult;
+        recognition.onresult = function(){
+          recognition = new webkitSpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = true;
+        };
       });
 
     </script>
