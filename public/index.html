@@ -45,35 +45,36 @@
 
         var translatedText = '';
         $.get(translateUrl,function(res){
-          console.log(res);
-          translatedText = res.translations[0].translatedText;
+          translatedText = res.data.translations[0].translatedText;
+          console.log(translatedText);
+          translatedText = 'hello';
         });
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
             'text': translatedText,
-            'success': function(){
-              console.log('you said '+translatedText.data.translations[0].translatedText);
+            'success': function(res){
+              console.log('you said '+ res.text);
               waitingForText = false;
             }
           }
         );
       }
 
-      listenFailureHandler = function(){
-        //reset face detect
-        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
-        //send text to server
-        $.post('https://heroku-node-waji.herokuapp.com/text',
-          {
-            'text': '',
-            'success': function(){
-              console.log('you said ');
-              waitingForText = false;
-            }
-          }
-        );
-      }
+      // listenFailureHandler = function(){
+      //   //reset face detect
+      //   $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
+      //   //send text to server
+      //   $.post('https://heroku-node-waji.herokuapp.com/text',
+      //     {
+      //       'text': '',
+      //       'success': function(){
+      //         console.log('you said ');
+      //         waitingForText = false;
+      //       }
+      //     }
+      //   );
+      // }
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
