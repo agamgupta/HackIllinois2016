@@ -52,7 +52,9 @@ app.get('/text',function(req,res){
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    text += req.body.text + ' ';
+    if (req.body.text == text.split(" ")[text.split(" ").length - 1]){
+      text += req.body.text + ' ';
+    }
     res.json({"text":text});
   } else {
     res.json({"err":"did not get any text"});
