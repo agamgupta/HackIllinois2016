@@ -24,6 +24,9 @@
         q_arr = q.split(' ');
         for (var i=0;i<q_arr.length;i++){
           url += q_arr[i];
+          if (i < q_arr.length - 1){
+            url += '%20';
+          }
         }
         url += '&source='+source+'&target='+target;
         return url;
