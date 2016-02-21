@@ -24,7 +24,7 @@ app.get('/facedetect',function(req,res){
 app.post('/facedetect',function(req,res){
   if (req.query.faceDetectFlag){
     faceDetectFlag = req.query.faceDetectFlag;
-    res.json({"msg":"success"});
+    res.json({"faceDetectFlag":faceDetectFlag});
   } else {
     res.json({"err":"failed, incorrect parameters"});
   }
@@ -39,7 +39,7 @@ app.get('/text',function(req,res){
 app.post('/text',function(req,res){
   if (req.body.text){
     text = req.body.text;
-    res.json({"msg":"success"});
+    res.json({"text":text});
   } else {
     res.json({"err":"did not get any text"});
   }
