@@ -40,7 +40,7 @@ app.get('/wholetext',function(req,res){
 
 app.get('/text',function(req,res){
   res.json({
-    "text":text
+    "text":text2
   });
   var length = text.split(" ").length;
   if (length > 6){

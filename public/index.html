@@ -38,8 +38,8 @@
 
 
       var recognition = new webkitSpeechRecognition();
-      // recognition.continuous = true;
-      // recognition.interimResults = true;
+      recognition.continuous = true;
+      recognition.interimResults = true;
       recognition.lang = $('input').val();
       recognition.start();
       recognition.onresult = function(event) {
@@ -63,7 +63,7 @@
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
-            text: translatedText,
+            text: translatedText.split(" ")[translatedText.split(" ").length - 1],
             success: function(res){
               // if (translatedText.split(" ").length > 1000){
               //   recognition.stop();
