@@ -54,7 +54,7 @@ app.get('/textomar',function(req,res){
 
 app.post('/textomar',function(req,res){
   if (req.body.textomar){
-    text = req.body.textomar;
+    textomar = req.body.textomar;
     res.json({"textomar":textomar});
   } else {
     res.json({"err":"did not get any text"});
