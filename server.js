@@ -3,8 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     faceDetectFlag = false,
     text = '',
-    text2 = '',
-    textomar = 'you did it';
+    text2 = '';
 
 var port = process.env.PORT || 8000;
 
@@ -17,20 +16,20 @@ app.get('/',function(req,res){
   res.sendFile('index.html');
 });
 
-app.get('/facedetect',function(req,res){
-  res.json({
-    "faceDetectFlag": faceDetectFlag
-  });
-});
-
-app.post('/facedetect',function(req,res){
-  if (req.query.faceDetectFlag){
-    faceDetectFlag = req.query.faceDetectFlag;
-    res.json({"faceDetectFlag":faceDetectFlag});
-  } else {
-    res.json({"err":"failed, incorrect parameters"});
-  }
-});
+// app.get('/facedetect',function(req,res){
+//   res.json({
+//     "faceDetectFlag": faceDetectFlag
+//   });
+// });
+//
+// app.post('/facedetect',function(req,res){
+//   if (req.query.faceDetectFlag){
+//     faceDetectFlag = req.query.faceDetectFlag;
+//     res.json({"faceDetectFlag":faceDetectFlag});
+//   } else {
+//     res.json({"err":"failed, incorrect parameters"});
+//   }
+// });
 
 app.get('/wholetext',function(req,res){
   res.json({
@@ -46,6 +45,8 @@ app.get('/text',function(req,res){
   if (length > 6){
     //take off first word
     text2 = text.split(" ").slice(length-6,length).join(" ");
+  } else {
+    text2 = text.split(" ").slice(0,6).join(" ");
   }
 });
 
@@ -53,21 +54,6 @@ app.post('/text',function(req,res){
   if (req.body.text){
     text += req.body.text + ' ';
     res.json({"text":text});
-  } else {
-    res.json({"err":"did not get any text"});
-  }
-});
-
-app.get('/textomar',function(req,res){
-  res.json({
-    "textomar":textomar
-  });
-});
-
-app.post('/textomar',function(req,res){
-  if (req.body.textomar){
-    textomar = req.body.textomar;
-    res.json({"textomar":textomar});
   } else {
     res.json({"err":"did not get any text"});
   }
