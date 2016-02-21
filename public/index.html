@@ -53,12 +53,7 @@
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
             'text': translatedText,
-            'success': function(res){
-              if (res.text){
-                console.log('you said '+ res.text);
-              } else {
-                console.log('err: ' + res.err);
-              }
+            'success': function(){
               waitingForText = false;
             }
           }
