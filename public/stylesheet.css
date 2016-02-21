@@ -30,8 +30,7 @@
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
-  margin-top: 200px;
-  margin-left: 20px;
+  padding-left: 40%;
   position: static;
 }
 
@@ -41,7 +40,7 @@
   }
 }
 
-#logo, #inner {
+#lang, #trans {
   display: inline-block;
 }
 

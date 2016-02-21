@@ -15,20 +15,21 @@
     <div class='test' id='jumbotron jumbotron-fluid'>
       <p id='logo'>OcWord</p>
       <div id='inner'>
-        <h3>
-          Language Code:
-        </h3>
-        <input type='text' placeholder=" 'en'" />
-        <br><br><br>
-        <h3>
-          Translate?
-        </h3>
-        <br>
-        <select>
-          <option value='yes'>yes</option>
-          <option value='no'>no</option>
-        </select>
-        <br><br><br>
+        <div id='lang'>
+          <h3>
+            Language Code:
+          </h3>
+          <input type='text' placeholder=" 'en'" />
+        </div>
+        <div id='trans'>
+          <h3>
+            Translate?
+          </h3>
+          <select>
+            <option value='yes'>yes</option>
+            <option value='no'>no</option>
+          </select>
+        </div>
         <button class='btn btn-success' onClick="begin()">Start Conversing!</button>
       </div>
       <div id='bottom'>
