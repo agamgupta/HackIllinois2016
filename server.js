@@ -2,7 +2,7 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     faceDetectFlag = false,
-    text = 'you did it!';
+    text = '';
 
 var port = process.env.PORT || 8000;
 
