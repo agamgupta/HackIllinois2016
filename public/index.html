@@ -54,7 +54,11 @@
           {
             'text': translatedText,
             'success': function(res){
-              console.log('you said '+ res.text);
+              if (res.text){
+                console.log('you said '+ res.text);
+              } else {
+                console.log('err: ' + res.err);
+              }
               waitingForText = false;
             }
           }
