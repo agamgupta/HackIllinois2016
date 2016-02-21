@@ -40,6 +40,7 @@
   }
   #logo {
     color: white;
+    visibility: hidden;
   }
 }
 
