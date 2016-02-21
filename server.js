@@ -52,7 +52,7 @@ app.get('/text',function(req,res){
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    if (req.body.text == text.split(" ")[text.split(" ").length - 1] || text.split(" ").length < 3){
+    if (req.body.text != text.split(" ")[text.split(" ").length - 1] || text.split(" ").length < 3){
       text += req.body.text + ' ';
     }
     res.json({"text":text});
