@@ -23,15 +23,7 @@
       recognition.onresult = function(event) {
         // console.log(event);
         //set flag back to false
-        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res,err){
-          if (err){
-            console.log('err:');
-            console.log(err);
-          } else {
-            console.log('res:');
-            console.log(res);
-          }
-        });
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
@@ -45,15 +37,8 @@
       }
 
       listenFailureHandler = function(){
-        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res,err){
-          if (err){
-            console.log('err:');
-            console.log(err);
-          } else {
-            console.log('res:');
-            console.log(res);
-          }
-        });
+        //reset face detect
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
@@ -70,7 +55,7 @@
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           if (res.faceDetectFlag && !waitingForText){
             recognition.lang = $('input').val();
-            console.log('language is '+recognition.lang);
+            console.log(res.faceDetectFlag+', language is '+recognition.lang);
             recognition.start();
             waitingForText = true;
 
