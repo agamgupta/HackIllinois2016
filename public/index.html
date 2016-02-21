@@ -44,6 +44,28 @@
         );
       }
 
+      listenFailureHandler = function(){
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res,err){
+          if (err){
+            console.log('err:');
+            console.log(err);
+          } else {
+            console.log('res:');
+            console.log(res);
+          }
+        });
+        //send text to server
+        $.post('https://heroku-node-waji.herokuapp.com/text',
+          {
+            'text': '',
+            'success': function(){
+              console.log('you said ');
+              waitingForText = false;
+            }
+          }
+        );
+      }
+
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           if (res.faceDetectFlag && !waitingForText){
@@ -51,6 +73,10 @@
             console.log('language is '+recognition.lang);
             recognition.start();
             waitingForText = true;
+
+            window.setTimeout(function(){
+              listenFailureHandler();
+            }, 2000);
           } else {
             console.log('faceDetectFlag is '+res.faceDetectFlag);
           }
