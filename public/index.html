@@ -53,8 +53,8 @@
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          console.log(typeof(res.faceDetectFlag));
-          if (res.faceDetectFlag == 'true' && waitingForText == false){
+          console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
+          if (res.faceDetectFlag == true && waitingForText == false){
             recognition.lang = $('input').val();
             console.log(res.faceDetectFlag+', language is '+recognition.lang);
             recognition.start();
