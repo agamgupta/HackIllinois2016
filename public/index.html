@@ -48,13 +48,13 @@
         translatedText = '';
         $.get(translateUrl,function(res){
           translatedText = res.data.translations[0].translatedText;
-          console.log('translated to: '+translatedText.strip("'"));
+          console.log('translated to: '+translatedText);
           //send text to server
           $.post('https://heroku-node-waji.herokuapp.com/text',
             {
-              'text': translatedText,
-              'success': function(){
-                // waitingForText = false;
+              text: translatedText,
+              success: function(res){
+                console.log(res);
               }
             }
           );
