@@ -18,7 +18,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
       // var waitingForText = false;
-
+      var translatedText = '';
       var concatUrl = function(base, q, source, target){
         console.log(q);
         var url = base+'&q=';
@@ -45,7 +45,7 @@
 
         var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
-        var translatedText = '';
+        translatedText = '';
         $.get(translateUrl,function(res){
           translatedText = res.data.translations[0].translatedText;
           console.log('translated to: '+translatedText);
