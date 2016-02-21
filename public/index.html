@@ -20,6 +20,7 @@
       var waitingForText = false;
 
       var concatUrl = function(base, q, source, target){
+        console.log(q);
         var url = base+'&q=';
         q_arr = q.split(' ');
         for (var i=0;i<q_arr.length;i++){
@@ -38,13 +39,12 @@
         //set flag back to false
         $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
 
-        console.log(event.results[0][0].transcript);
         var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
         var translatedText = '';
         $.get(translateUrl,function(res){
+          translatedText = res.translations[0].translatedText;
           console.log(res);
-          translatedText = res.translations.translatedText;
         });
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
