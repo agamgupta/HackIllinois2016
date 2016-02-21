@@ -45,7 +45,7 @@
           console.log('resetting faceDetectFlag');
         });
 
-        if ($('input').val() != 'en'){
+        if ($('input').val() != 'en' || $('input').val() != ''){
           var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
           $.get(translateUrl,function(res){
