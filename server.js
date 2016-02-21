@@ -31,7 +31,9 @@ app.post('/facedetect',function(req,res){
 });
 
 app.get('/text',function(req,res){
-  res.json({"text":text});
+  res.json({
+    "text":text
+  });
 });
 
 app.post('/text',function(req,res){
