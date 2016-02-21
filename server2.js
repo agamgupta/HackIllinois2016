@@ -40,7 +40,7 @@ app.get('/wholetext',function(req,res){
 
 app.get('/text',function(req,res){
   res.json({
-    "text":text
+    "text":text2
   });
   var length = text.split(" ").length;
   if (length > 6){
@@ -51,7 +51,7 @@ app.get('/text',function(req,res){
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    text += req.body.text;
+    text = req.body.text;
     res.json({"text":text});
   } else {
     res.json({"err":"did not get any text"});
