@@ -53,7 +53,8 @@
 
       window.setInterval(function(){
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-          if (res.faceDetectFlag == true && waitingForText == false){
+          if (res.faceDetectFlag == 'true' && waitingForText == false){
+            console.log(typeof(res.faceDetectFlag));
             recognition.lang = $('input').val();
             console.log(res.faceDetectFlag+', language is '+recognition.lang);
             recognition.start();
@@ -62,8 +63,6 @@
             // window.setTimeout(function(){
             //   listenFailureHandler();
             // }, 2000);
-          } else {
-            console.log('faceDetectFlag is '+res.faceDetectFlag);
           }
         });
       }, 2000);
