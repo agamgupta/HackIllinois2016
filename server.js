@@ -6,8 +6,6 @@ var express = require('express'),
     text2 = '',
     $ = require('jquery');
 
-var del = 0;
-
 var port = process.env.PORT || 8000;
 
 app.use(express.static(__dirname + '/public'));
@@ -41,28 +39,27 @@ app.get('/wholetext',function(req,res){
 });
 
 app.get('/text',function(req,res){
-  del += 1;
-  if (del % 100 === 0){
-    res.json({
-      "text":text2
-    });
-  }
+  var uniqueWords = [];
+  $.each(text.split(" "), function(i, el){
+      if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
+  });
   var length = text.split(" ").length;
   if (length > 8){
     //take off first word
     text2 = text.split(" ").slice(length-8,length).join(" ");
   } else {
-    text2 = text.split(" ").slice(0,8).join(" ");
+    text2 = text.split(" ").slice(0,length+1).join(" ");
   }
+  res.json({
+    "text":text2
+  });
 });
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    text += req.body.text + ' ';
-    var uniqueWords = [];
-    $.each(text.split(" "), function(i, el){
-        if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
-    });
+    text = req.body.text + ' ';
+    //
+    //
     res.json({"text":text});
   } else {
     res.json({"err":"did not get any text"});
