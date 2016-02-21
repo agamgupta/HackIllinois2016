@@ -48,7 +48,7 @@
         translatedText = '';
         $.get(translateUrl,function(res){
           translatedText = res.data.translations[0].translatedText;
-          console.log('translated to: '+translatedText);
+          console.log('translated to: '+translatedText.strip("'"));
           //send text to server
           $.post('https://heroku-node-waji.herokuapp.com/text',
             {
