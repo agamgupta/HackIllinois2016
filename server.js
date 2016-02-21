@@ -3,7 +3,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     faceDetectFlag = false,
     text = '',
-    text2 = '';
+    text2 = '',
+    $ = require('jquery');
 
 var port = process.env.PORT || 8000;
 
@@ -42,19 +43,21 @@ app.get('/text',function(req,res){
     "text":text2
   });
   var length = text.split(" ").length;
-  if (length > 6){
+  if (length > 8){
     //take off first word
-    text2 = text.split(" ").slice(length-6,length).join(" ");
+    text2 = text.split(" ").slice(length-8,length).join(" ");
   } else {
-    text2 = text.split(" ").slice(0,6).join(" ");
+    text2 = text.split(" ").slice(0,8).join(" ");
   }
 });
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    if (text.split(" ").length < 3 || req.body.text != text.split(" ")[text.split(" ").length - 1]){
-      text += req.body.text + ' ';
-    }
+    text += req.body.text + ' ';
+    var uniqueWords = [];
+    $.each(text.split(" "), function(i, el){
+        if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
+    });
     res.json({"text":text});
   } else {
     res.json({"err":"did not get any text"});
