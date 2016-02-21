@@ -63,11 +63,12 @@
               if (translatedText.split(" ").length > 7){
                 recognition.stop();
                 translatedText = "";
+                recognition.results = [];
                 var recognition = new webkitSpeechRecognition();
                 recognition.continuous = true;
                 recognition.interimResults = true;
                 recognition.lang = $('input').val();
-                recognition.start();        
+                recognition.start();
               }
             }
           }
