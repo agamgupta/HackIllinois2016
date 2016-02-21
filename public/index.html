@@ -2,111 +2,86 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Speech to Text</title>
+    <link rel='stylesheet' href='stylesheet.css'>
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
   <body>
 
-    <div id='container'>
-      <p>
-        Language Code:
-      </p>
-      <input type='text' placeholder="'en'"/>
-      <p>
-        Translate?
-      </p>
-      <select>
-        <option value='yes'></option>
-        <option value='no'></option>
-      </select>
-      <br>
-      <button onClick="begin()">Start Conversing!</button>
+    <div id='jumbotron jumbotron-fluid'>
+      <div id='inner'>
+        <h3>
+          Language Code:
+        </h3>
+        <br>
+        <input type='text' placeholder=" 'en'" />
+        <br><br><br>
+        <h3>
+          Translate?
+        </h3>
+        <br>
+        <select>
+          <option value='yes'>yes</option>
+          <option value='no'>no</option>
+        </select>
+        <br><br><br>
+        <button class='btn btn-success' onClick="begin()">Start Conversing!</button>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css"></script>
-    <link rel='stylesheet' href='stylesheet.css'>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
+
     <script>
-      // var waitingForText = false;
-      var translatedText = '';
-      var concatUrl = function(base, q, source, target){
-        console.log(q);
-        var url = base+'&q=';
-        q_arr = q.split(' ');
-        for (var i=0;i<q_arr.length;i++){
-          url += q_arr[i];
-          if (i < q_arr.length - 1){
-            url += '%20';
-          }
-        }
-        url += '&source='+source+'&target='+target;
-        return url;
-      }
+      var begin = function(){
 
-      // window.setInterval(function(){
+        console.log('starting up...');
 
-      var recognition = new webkitSpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = $('input').val();
-      recognition.start();
-      recognition.onresult = function(event) {
-
-        // console.log(event);
-        //set flag back to false
-        // $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
-        //   console.log('resetting faceDetectFlag');
-        // });
-
-        if ($('input').val() != 'en' && $('input').val() != ''){
-          var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
-
-          $.get(translateUrl,function(res){
-            translatedText = res.data.translations[0].translatedText;
-          });
-        } else {
-          translatedText = event.results[0][0].transcript;
-        }
-        console.log(translatedText);
-        //send text to server
-        $.post('https://heroku-node-waji.herokuapp.com/text',
-          {
-            text: translatedText.split(" ")[translatedText.split(" ").length - 1],
-            success: function(res){
-              console.log(translatedText.split(" ")[translatedText.split(" ").length - 1]);
-              // if (translatedText.split(" ").length > 1000){
-              //   recognition.stop();
-              //   console.log(recognition.results);
-              // }
+        var translatedText = '';
+        var concatUrl = function(base, q, source, target){
+          console.log(q);
+          var url = base+'&q=';
+          q_arr = q.split(' ');
+          for (var i=0;i<q_arr.length;i++){
+            url += q_arr[i];
+            if (i < q_arr.length - 1){
+              url += '%20';
             }
           }
-        );
-        // var recognition = new webkitSpeechRecognition();
-        // recognition.continuous = true;
-        // recognition.interimResults = true;
-        // recognition.lang = $('input').val();
-        // recognition.start();
+          url += '&source='+source+'&target='+target;
+          return url;
+        }
+
+
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = $('input').val();
+        recognition.start();
+        recognition.onresult = function(event) {
+
+          if ($('select').val() == 'yes' && $('input').val() != 'en' && $('input').val() != ''){
+            var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
+
+            $.get(translateUrl,function(res){
+              translatedText = res.data.translations[0].translatedText;
+            });
+          } else {
+            translatedText = event.results[0][0].transcript;
+          }
+          console.log(translatedText);
+          //send text to server
+          $.post('https://heroku-node-waji.herokuapp.com/text',
+            {
+              text: translatedText.split(" ")[translatedText.split(" ").length - 1],
+              success: function(res){
+                console.log(translatedText.split(" ")[translatedText.split(" ").length - 1]);
+              }
+            }
+          );
+        }
       }
-
-    // }, 7500);
-      // console.log(res.faceDetectFlag+', language is '+recognition.lang);
-
-      // window.setInterval(function(){
-      //   $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
-      //     // console.log(res.faceDetectFlag + ', type ' + typeof(res.faceDetectFlag));
-      //     if (res.faceDetectFlag == 'true'){ //&& waitingForText == false){
-      //
-      //       // waitingForText = true;
-      //     }
-      //   });
-      //
-      // }, 2000, function(){
-      //   recognition.onresult = function(){
-      //     recognition = new webkitSpeechRecognition();
-      //     recognition.continuous = true;
-      //     recognition.interimResults = true;
-      //   };
-      // });
-
     </script>
 
   </body>
