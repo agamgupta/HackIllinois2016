@@ -24,15 +24,20 @@
         // console.log(event);
         //set flag back to false
         $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res,err){
-          console.log(res);
-          console.log(err);
+          if (err){
+            console.log('err:');
+            console.log(err);
+          } else {
+            console.log('res:');
+            console.log(res);
+          }
         });
         //send text to server
         $.post('https://heroku-node-waji.herokuapp.com/text',
           {
             'text': event.results[0][0].transcript,
             'success': function(){
-              console.log(event.results[0][0].transcript);
+              console.log('you said '+event.results[0][0].transcript);
               waitingForText = false;
             }
           }
@@ -43,11 +48,11 @@
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           if (res.faceDetectFlag && !waitingForText){
             recognition.lang = $('input').val();
-            console.log(recognition.lang);
+            console.log('language is '+recognition.lang);
             recognition.start();
             waitingForText = true;
           } else {
-            console.log(res.faceDetectFlag);
+            console.log('faceDetectFlag is '+res.faceDetectFlag);
           }
         });
       }, 2000);
