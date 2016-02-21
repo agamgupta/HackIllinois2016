@@ -35,6 +35,9 @@ app.get('/text',function(req,res){
   res.json({
     "text":text
   });
+  if (text.length > 10){
+    text = '';
+  }
 });
 
 app.post('/text',function(req,res){
