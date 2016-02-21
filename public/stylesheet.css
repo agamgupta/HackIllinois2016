@@ -17,7 +17,7 @@
 }
 
 #native-words {
-  padding-left: 45%;
+  padding-left: 48%;
   padding-top: 5%;
   font-size: 50px;
   color: white !important;
@@ -36,7 +36,10 @@
 
 @media (max-width: 800px) {
   #native-words {
-    padding-right: 40%;
+    padding-right: 30%;
+  }
+  #logo {
+    color: white;
   }
 }
 
