@@ -32,13 +32,20 @@ app.post('/facedetect',function(req,res){
   }
 });
 
+app.get('/wholetext',function(req,res){
+  res.json({
+    "text":text
+  });
+});
+
 app.get('/text',function(req,res){
   res.json({
     "text":text2
   });
-  if (text.split(" ").length > 6){
+  var length = text.split(" ").length;
+  if (length > 6){
     //take off first word
-    text2 = text.split(" ").slice(text.split(" ").length-6,text.split(" ").length).join(" ");
+    text2 = text.split(" ").slice(length-6,length).join(" ");
   }
 });
 
