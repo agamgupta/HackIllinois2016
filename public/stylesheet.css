@@ -30,8 +30,9 @@
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
+  margin-top: 200px;
   margin-left: 800px;
-  position: absolute;
+  position: static;
 }
 
 @media (max-width: 800px) {
