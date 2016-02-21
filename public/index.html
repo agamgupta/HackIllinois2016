@@ -37,7 +37,10 @@
       recognition.onresult = function(event) {
         // console.log(event);
         //set flag back to false
-        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false');
+        $.post('https://heroku-node-waji.herokuapp.com/facedetect?faceDetectFlag=false',function(res){
+          console.log('resetting faceDetectFlag');
+          console.log(res);
+        });
 
         var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
