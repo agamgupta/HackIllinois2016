@@ -29,7 +29,6 @@
 
 #native-words {
   position: static;
-  margin-top: 200px;
   font-size: 50px;
   color: white !important;
 }
@@ -46,8 +45,8 @@
 
 button {
   position: fixed;
-  margin-top: 400px;
-  margin-left: 250px;
+  margin-top: 350px;
+  margin-left: 170px;
 }
 
 #trans {
