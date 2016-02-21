@@ -50,7 +50,7 @@
           {
             'text': translatedText,
             'success': function(){
-              console.log('you said '+translatedText.results[0][0].transcript);
+              console.log('you said '+translatedText.data.translations[0].translatedText);
               waitingForText = false;
             }
           }
