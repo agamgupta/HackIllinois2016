@@ -19,9 +19,10 @@
         <br>
         <input type='text' placeholder=" 'en'" />
         <br><br><br>
-        <h3>
+        <h3 id='translate'>
           Translate?
         </h3>
+        <div id='text'>~</div>
         <br>
         <select>
           <option value='yes'>yes</option>
@@ -63,8 +64,9 @@
         recognition.onresult = function(event) {
 
           var untranslatedText = event.results[0][0].transcript;
-          console.log(untranslatedText);
-          
+          // console.log(untranslatedText);
+          $('#text').html(untranslatedText);
+
           if ($('select').val() == 'yes' && $('input').val() != 'en' && $('input').val() != ''){
             var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
@@ -74,7 +76,7 @@
           } else {
             translatedText = event.results[0][0].transcript;
           }
-          console.log(translatedText);
+          // console.log(translatedText);
           //send text to server
           $.post('https://heroku-node-waji.herokuapp.com/text',
             {
