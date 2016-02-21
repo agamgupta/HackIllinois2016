@@ -39,16 +39,16 @@ app.get('/wholetext',function(req,res){
 });
 
 app.get('/text',function(req,res){
-  var uniqueWords = [];
-  $.each(text.split(" "), function(i, el){
-      if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
-  });
   var length = text.split(" ").length;
   if (length > 8){
+    var uniqueWords = [];
+    $.each(text.split(" "), function(i, el){
+        if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
+    });
     //take off first word
     text2 = text.split(" ").slice(length-8,length).join(" ");
   } else {
-    text2 = text.split(" ").slice(0,length+1).join(" ");
+    text2 = text.split(" ").slice(0,length).join(" ");
   }
   res.json({
     "text":text2
