@@ -8,19 +8,12 @@
   margin: auto;
   height: 450px;
   padding-top: 5%;
-  padding-left: 22%;
+  padding-left: 30%;
   background-color: white !important;
 }
 
 #bottom {
   height: 200px;
-}
-
-#native-words {
-  padding-left: 45%;
-  padding-top: 5%;
-  font-size: 50px;
-  color: white !important;
 }
 
 #logo {
@@ -34,6 +27,13 @@
   padding-left: 30%;
 }
 
+#native-words {
+  position: static;
+  margin-top: 200px;
+  font-size: 50px;
+  color: white !important;
+}
+
 @media (max-width: 800px) {
   #native-words {
     padding-right: 40%;
@@ -42,6 +42,10 @@
 
 #lang, #trans {
   display: inline-block;
+}
+
+button {
+  padding-left: 40%;
 }
 
 #trans {
