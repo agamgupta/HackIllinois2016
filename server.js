@@ -35,8 +35,9 @@ app.get('/text',function(req,res){
   res.json({
     "text":text
   });
-  if (text.length > 30){
-    text = '';
+  if (text.split(" ").length > 6){
+    //take off first word
+    text.split(" ").slice(1,text.split(" ").length).join(" ");
   }
 });
 

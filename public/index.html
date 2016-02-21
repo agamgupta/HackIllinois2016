@@ -43,22 +43,26 @@
           console.log('resetting faceDetectFlag');
         });
 
-        var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
+        if ($('input').val() != 'en'){
+          var translateUrl = concatUrl('https://www.googleapis.com/language/translate/v2?key=AIzaSyBfrsItManvAhTKiw7RaQJhG1pamN65b18', event.results[0][0].transcript, $('input').val(),'en');
 
-        translatedText = '';
-        $.get(translateUrl,function(res){
-          translatedText = res.data.translations[0].translatedText;
-          console.log('translated to: '+translatedText);
-          //send text to server
-          $.post('https://heroku-node-waji.herokuapp.com/text',
-            {
-              text: translatedText,
-              success: function(res){
-                console.log(res);
-              }
+          $.get(translateUrl,function(res){
+            translatedText = res.data.translations[0].translatedText;
+            console.log('translated to: '+translatedText);
+          });
+        } else {
+          translatedText = event.results[0][0].transcript;
+        }
+        //send text to server
+        $.post('https://heroku-node-waji.herokuapp.com/text',
+          {
+            text: translatedText,
+            success: function(res){
+              console.log(res);
             }
-          );
-        });
+          }
+        );
+
       }
 
       window.setInterval(function(){
@@ -75,7 +79,7 @@
       }, 2000, function(){
         recognition.onresult = function(){
           recognition = new webkitSpeechRecognition();
-          // recognition.continuous = true;
+          recognition.continuous = true;
           recognition.interimResults = true;
         };
       });
