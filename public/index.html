@@ -37,7 +37,7 @@
 
       var recognition = new webkitSpeechRecognition();
       recognition.continuous = true;
-      recognition.interimResults = true;
+      // recognition.interimResults = true;
       recognition.lang = $('input').val();
       recognition.start();
       recognition.onresult = function(event) {
