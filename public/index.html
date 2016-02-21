@@ -45,7 +45,7 @@
         $.get('https://heroku-node-waji.herokuapp.com/facedetect',function(res){
           if (res.faceDetectFlag && !waitingForText){
             recognition.start();
-            //recognitionHindi.start();
+            recognitionHindi.start();
             waitingForText = true;
           } else {
             console.log(res.faceDetectFlag);
