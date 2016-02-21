@@ -57,12 +57,7 @@ app.get('/text',function(req,res){
 
 app.post('/text',function(req,res){
   if (req.body.text){
-    text += req.body.text + ' ';
-    var uniqueWords = [];
-    $.each(text.split(" ").reverse(), function(i, el){
-        if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
-    });
-    uniqueWords.reverse();
+    text = req.body.text + ' ';
     //
     //
     res.json({"text":text});

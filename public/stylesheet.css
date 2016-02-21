@@ -1,0 +1,11 @@
+#container {
+  vertical-align: middle;
+  align-content: center;
+  background-color: white;
+  border-width: 20px;
+  border-color: orange;
+}
+
+window {
+  background-color: blue;
+}

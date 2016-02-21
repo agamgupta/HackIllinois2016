@@ -6,15 +6,24 @@
   </head>
   <body>
 
-    <p>
-      Loaded!
-    </p>
-    <br><br>
-    <p>
-       enter language code:
-    </p>
-    <input type='text' placeholder='en' value='es'/>
+    <div id='container'>
+      <p>
+        Language Code:
+      </p>
+      <input type='text' placeholder="'en'"/>
+      <p>
+        Translate?
+      </p>
+      <select>
+        <option value='yes'></option>
+        <option value='no'></option>
+      </select>
+      <br>
+      <button onClick="begin()">Start Conversing!</button>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css"></script>
+    <link rel='stylesheet' href='stylesheet.css'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
     <script>
       // var waitingForText = false;
