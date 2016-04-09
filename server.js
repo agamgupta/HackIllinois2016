@@ -1,7 +1,7 @@
 var express = require('express'),
 	app = express(),
 	Twitter = require('twitter-node-client').Twitter,
-	tweets = {};
+	tweets = {test: 'hi'};
 
 //Callback functions
     var error = function (err, response, body) {
@@ -40,7 +40,7 @@ var express = require('express'),
     twitter.getCustomApiCall('/statuses/filter.json',{ id: '412312323', latitude: '-123.044,36.846', longitude: '-121.591,38.352'}, error, success);
 
     app.get('/',function(req,res){
-    	res.json(data);
+    	res.json(tweets);
     })
 
     //
