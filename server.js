@@ -1,71 +1,58 @@
 var express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    faceDetectFlag = false,
-    text = '',
-    text2 = '',
-    $ = require('jquery');
+	app = express(),
+	Twitter = require('twitter-node-client').Twitter,
+	tweets = {};
 
-var port = process.env.PORT || 8000;
+//Callback functions
+    var error = function (err, response, body) {
+        console.log('ERROR [%s]', err);
+    };
+    var success = function (data) {
+        console.log('Data [%s]', data);
+        tweets = data;
+    };
 
-app.use(express.static(__dirname + '/public'));
+    var Twitter = require('twitter-js-client').Twitter;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+    //Get this data from your twitter apps dashboard
+    var config = {
+        "consumerKey": "GJpX8CFvUyNww23DTQLWqAVXJ",
+        "consumerSecret": "wSpJHqKXc2xMF9dmN7Wm6ncKDAeuIFMgSG1oXBVu2AtRW37b9Z",
+        "accessToken": "717405588926382080-BX0cWdn3jqmWtt8tAKtsVLmMHPFkJh2",
+        "accessTokenSecret": "Cjmv9y3Jw36h7pOWCpR1H1YFEptPsflR88BWDkcoA7Mhl",
+        "callBackUrl": "http://www.google.com"
+    }
 
-app.get('/',function(req,res){
-  res.sendFile('index.html');
-});
+    var twitter = new Twitter(config);
 
-// app.get('/facedetect',function(req,res){
-//   res.json({
-//     "faceDetectFlag": faceDetectFlag
-//   });
-// });
-//
-// app.post('/facedetect',function(req,res){
-//   if (req.query.faceDetectFlag){
-//     faceDetectFlag = req.query.faceDetectFlag;
-//     res.json({"faceDetectFlag":faceDetectFlag});
-//   } else {
-//     res.json({"err":"failed, incorrect parameters"});
-//   }
-// });
+    //Example calls
 
-app.get('/wholetext',function(req,res){
-  res.json({
-    "text":text
-  });
-});
+    // twitter.getUserTimeline({ screen_name: 'BoyCook', count: '10'}, error, success);
 
-app.get('/text',function(req,res){
-  var length = text.split(" ").length;
-  if (length > 8){
-    var uniqueWords = [];
-    $.each(text.split(" "), function(i, el){
-        if($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
-    });
-    //take off first word
-    text2 = text.split(" ").slice(length-8,length).join(" ");
-  } else {
-    text2 = text.split(" ").slice(0,length).join(" ");
-  }
-  res.json({
-    "text":text2
-  });
-});
+    // twitter.getMentionsTimeline({ count: '10'}, error, success);
 
-app.post('/text',function(req,res){
-  if (req.body.text){
-    text = req.body.text + ' ';
+    // twitter.getHomeTimeline({ count: '10'}, error, success);
+
+    // twitter.getReTweetsOfMe({ count: '10'}, error, success);
+
+    // twitter.getTweet({ id: '1111111111'}, error, success);
+
+    twitter.getCustomApiCall('/statuses/filter.json',{ id: '412312323', latitude: '-123.044,36.846', longitude: '-121.591,38.352'}, error, success);
+
+    app.get('/',function(req,res){
+    	res.json(data);
+    })
+
     //
+    // Get 10 tweets containing the hashtag haiku
     //
-    res.json({"text":text});
-  } else {
-    res.json({"err":"did not get any text"});
-  }
-});
 
-app.listen(port, function () {
-  console.log( "Listening on port " + port );
-});
+    // twitter.getSearch({'q':'#haiku','count': 10}, error, success);
+
+    //
+    // Get 10 popular tweets with a positive attitude about a movie that is not scary 
+    //
+
+    // twitter.getSearch({'q':' movie -scary :) since:2013-12-27', 'count': 10, 'result\_type':'popular'}, error, success);
+    var port = process.env.PORT || 8000;
+    app.listen(port);
